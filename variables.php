@@ -6,4 +6,8 @@ $msg='Register';
 $submitmessage='registerproducts';
 $failed='';
 $msgsc='';
+$sale_prdt_name='';
+$sale_prdt_price='';
+$sale_prdt_quantity='';
+$sale_prdt_total='';
 ?>

@@ -1,5 +1,6 @@
 <?php
 include('database.php');
+include('variables.php');
 if(!$_SESSION['USER_ID']){
     header("location:config.php");
     die();
@@ -8,25 +9,42 @@ if(!$_SESSION['USER_ID']){
 if(isset($_GET['msgsuccess'])){
     $msgsuccess =$_GET['msgsuccess'];  
 }
-include('variables.php');
+
 if(isset($_GET['message'])){
 $msg=$_GET['message'];
+
 }
-if(isset($_GET['msgsuccess'])){
-    $msgsc=$_GET['msgsuccess'];
+// getting data from the s
+if(isset($_POST['sale'])){
+
+$sale_prdt_name=$_POST['productname'];
+$sale_prdt_price=$_POST['price'];
+$sale_prdt_quantity=$_POST['quantity'];
+$sale_prdt_total=($sale_prdt_price * $sale_prdt_quantity);
+// echo $sale_prdt_total;
 }
-if(isset($_GET['edit'])){
-    $prdt = $_GET['edit'];
-    $msql3 = mysqli_query($conn, "select * from products where id ='$prdt'");
-    $ptd = mysqli_fetch_assoc($msql3);
-    $ptdname = $ptd['productname'];
-    $ptdprice =$ptd['price'];
-    $ptdquantity =$ptd['quantity'];
+
+//getting available qunatity so that i cna compare it to the one being booked then substract and stay wi
+$prdtnames=mysqli_query($conn, "select * from products;");
+$prdtname =mysqli_query($conn, "select * from products;");
+$prdt3 =mysqli_fetch_assoc($prdtnames);
+$availableqnty =$prdt3['quantity'];
+
+
+// echo $availableqnty;
+if($sale_prdt_quantity<$availableqnty){
+    $availableqnty = intval($availableqnty)-intval($sale_prdt_quantity);
+        mysqli_query($conn, "insert into sales(productname,saleamount) values('$sale_prdt_name','$sale_prdt_total')");
+        mysqli_query($conn, "update products set quantity='$availableqnty' where productname='$sale_prdt_name'");
+}else{
+    header("location:attendant.php");
 }
-if(isset($_GET['failed'])){
-$failed =$_GET['failed'];
-}
+
 ?>
+
+
+
+<!-- Html section -->
 <html>
     <head>
     <link rel="stylesheet" href="mycss.css">
@@ -48,34 +66,41 @@ $failed =$_GET['failed'];
         </div>
         </div>
         <div>
-        <h2 style="color:red; text-align:center; ">Welcome To the sales page <span style="color:rgb(21, 10, 66);"><?php echo $_SESSION['USER_NAME']; ?></span></h2>
+        <h3 style="color:rgb(21, 10, 66); text-align:left; ">Attendant: <span style="color:red;"><?php echo $_SESSION['USER_NAME']; ?></span></h3>
     </div>
 <div style="padding-top:20px; padding-left:500px;">
     <h3>Sale product</h3>
-    <form action="register.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $prdt?>">
+    <form action="attendant.php" method="POST">
+
         <table>
             <tr>
                 <td>Product Name:</td>
             </tr>
             <tr>
-                <td><input type="text" name="productname" placeholder="enter product name" style="padding:5px;" required value="<?php echo $ptdname;?>"></td>
+            <td>
+               <select name="productname" id="productname" style="padding:8px;" width="50">
+               <?php while($product=$prdtname->fetch_assoc()):?>
+                <option value="<?php echo $product['productname'];?>"><?php echo $product['productname'];?></option>
+                <?php endwhile?>
+            </select>
+        </td>  
+            <!-- <td><input type="text" name="productname" placeholder="enter product name" style="padding:5px;" required value="<?php echo $ptdname;?>"></td> -->
             </tr>
             <tr>
                 <td>Price:</td>
             </tr>
             <tr>
-                <td><input type="number" name="price" placeholder="product price" size="40" style="padding:5px;" required value="<?php echo $ptdprice;?>"></td>
+                <td><input type="number" name="price" placeholder="product price" size="40" style="padding:5px;" required></td>
             </tr>
             <tr>
                 <td>Quantity:</td>
             </tr>
             <tr>
-                <td><input type="number" name="quantity" placeholder="Product quantitiy" size="50" style="padding:5px;" required value="<?php echo $ptdquantity;?>"></td>
+                <td><input type="number" name="quantity" placeholder="Product quantitiy" size="50" style="padding:5px;" required></td>
             </tr>
             <tr>
 
-                <td><button type="submit" name="Register" style="padding:8px;">
+                <td><button type="submit" name="sale" style="padding:8px;">
                     Sale Product</button></td> 
             </tr>
         </table>
@@ -83,3 +108,4 @@ $failed =$_GET['failed'];
     </div>
     </body>
 </html>
+<?php $conn->close();?>

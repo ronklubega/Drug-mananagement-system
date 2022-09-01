@@ -22,7 +22,7 @@ if(isset($_GET['success'])){
 </head>
 <body>
 <div class="producttable">
-    <?php echo $mg;?>
+   <script>alert("<?php echo $mg;?>");</script> 
 <h2>Products availabe</h2>
                 <table>
                     <thead>

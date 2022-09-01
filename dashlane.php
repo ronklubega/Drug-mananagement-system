@@ -38,3 +38,4 @@ if(isset($_GET['message'])){
     <p style="color:red;  font-size:20px;"><?php echo $msg ?></p>
 </form>
 </div>
+<?php $conn->close();?>

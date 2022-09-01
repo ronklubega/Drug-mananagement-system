@@ -35,7 +35,7 @@ $failed =$_GET['failed'];
 </head>
 <body>
     <div>
-        <h1>Welcome <?php echo $_SESSION['USER_NAME']; ?></h1>
+        <h3>Admin User: <span style="color:red;"><?php echo $_SESSION['USER_NAME']; ?></span></h3>
         <script> alert("<?php echo $msgsc?>");</script>
     </div>
     <div style="padding-top:20px; padding-left:500px;">

@@ -49,6 +49,30 @@ if(isset($_GET['success'])){
                         <?php endwhile; ?>
                     </tbody>
                 </table>
+
+                <!-- section containing the reports on sales -->
+<h2>Products sold</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th >Sales(SHS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sales =mysqli_query($conn, "select * from sales");
+                        
+                        while($mysales =$sales->fetch_assoc()):
+                        if($mysales['saleamount']>0){
+                        ?>
+                        <tr>
+                            <td><?php echo $mysales['productname']?></td>
+                            <td><?php echo $mysales['saleamount']?></td>
+                        </tr>
+                        <?php } endwhile; ?>
+                    </tbody>
+                </table>
 </div>  
 </body>
 </html>
