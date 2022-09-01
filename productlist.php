@@ -1,11 +1,14 @@
 <?php
 include('head.php');
 include('database.php');
-
+$mg ='';
 $sql2 = mysqli_query($conn, "select * from products");
 if(!$_SESSION['USER_ID']){
     header("location:config.php");
     die();
+}
+if(isset($_GET['success'])){
+    $mg = $_GET['success'];
 }
 ?>
 
@@ -19,6 +22,7 @@ if(!$_SESSION['USER_ID']){
 </head>
 <body>
 <div class="producttable">
+    <?php echo $mg;?>
 <h2>Products availabe</h2>
                 <table>
                     <thead>
@@ -38,7 +42,7 @@ if(!$_SESSION['USER_ID']){
                             <td><?php echo $product['price']?></td>
                             <td><?php echo $product['quantity']?></td>
                             <td>
-                            <a href="index.php?edit=<?php echo $product['id']; ?>">Update</a>
+                            <a href="index.php?edit=<?php echo $product['id']; ?> && message=Update">Update</a>
                             <a href="process.php?delete=<?php echo $product['id'];?>">Delete</a>
                             </td>
                         </tr>

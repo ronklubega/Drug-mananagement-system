@@ -5,7 +5,7 @@ if(isset($_GET['message'])){
 $msg = $_GET['message'];
 }
 ?>
-
+    <link rel="stylesheet" href="mycss.css">
 <div class="register">
 <form action="register.php" method="POST">
 <h1>Login To Continue</h1>
@@ -21,7 +21,7 @@ $msg = $_GET['message'];
         <tr  >
             <!-- <td><input type="submit" placeholder="Register" name ="register" style="padding:8px;"></td> -->
             <td><button type="submit" name="login" style="padding:8px;"> Login</button></td>
-            <td style="padding-left:5px;"><a href="dashlane.php">Click here to Register</a></td>
+            <!-- <td style="padding-left:5px;"><a href="dashlane.php">Click here to Register</a></td> -->
         </tr>
     </table>
     <p style="color:red;  font-size:20px;"><?php echo $msg ?></p>

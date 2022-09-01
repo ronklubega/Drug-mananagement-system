@@ -1,9 +1,12 @@
 <?php
-include('head.php');
 include('database.php');
-$ptdname='';
-$ptdprice='';
-$ptdquantity='';
+include('variables.php');
+if(isset($_GET['message'])){
+$msg=$_GET['message'];
+}
+if(isset($_GET['msgsuccess'])){
+    $msgsc=$_GET['msgsuccess'];
+}
 if(!$_SESSION['USER_ID']){
     header("location:config.php");
     die();
@@ -17,6 +20,9 @@ if(isset($_GET['edit'])){
     $ptdprice =$ptd['price'];
     $ptdquantity =$ptd['quantity'];
 }
+if(isset($_GET['failed'])){
+$failed =$_GET['failed'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,14 +35,12 @@ if(isset($_GET['edit'])){
 <body>
     <div>
         <h1>Welcome <?php echo $_SESSION['USER_NAME']; ?></h1>
-        <h3 style="text-align:right; margin-top:-60px;">
-        <a href="productlist.php">Products list</a>
-           <a href="logout.php" > Logout</a>
-        </h3>
+        <script> alert("<?php echo $msgsc?>");</script>
     </div>
     <div style="padding-top:20px; padding-left:500px;">
-    <h3>Register your products</h3>
+    <h3><?php echo $msg?> product details</h3>
     <form action="register.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $prdt?>">
         <table>
             <tr>
                 <td>Product Name:</td>
@@ -57,9 +61,19 @@ if(isset($_GET['edit'])){
                 <td><input type="number" name="quantity" placeholder="Product quantitiy" size="50" style="padding:5px;" required value="<?php echo $ptdquantity;?>"></td>
             </tr>
             <tr>
-                <td><button type="submit" name="registerproducts"  style="padding:8px;">Register</button></td>
+                <?php 
+                if($msg == "Register"):
+                ?>
+                <td><button type="submit" name="Register" style="padding:8px;"><?php 
+                    echo "Register";?></button></td>
+                <?php else: ?>
+                <td><button type="submit" name="update"  style="padding:8px;">
+                   <?php echo $msg;
+                ?>
+                <?php endif?></button></td> 
             </tr>
         </table>
+        <p style="color:red;  font-size:20px;"><?php echo $failed ?></p>
 </form>    
     </div>
 </body>

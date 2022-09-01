@@ -1,0 +1,9 @@
+<?php
+$ptdname='';
+$ptdprice='';
+$ptdquantity='';
+$msg='Register';
+$submitmessage='registerproducts';
+$failed='';
+$msgsc='';
+?>

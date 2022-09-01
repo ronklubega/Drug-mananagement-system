@@ -1,5 +1,5 @@
 <?php
-include('defaultnav.php');
+include('head.php');
 $msg='';
 if(isset($_GET['message'])){
     $msg = $_GET['message'];
@@ -21,10 +21,18 @@ if(isset($_GET['message'])){
             <td>password:</td>
             <td><input type="password" placeholder="password" name="password" required size="40" style="padding:8px;"></td>
         </tr>
+        <tr>
+            <td><label for="usertype">User Type:</label></td>
+           <td><select name="usertype" id="usertype" style="padding:8px;">
+                <option value="attendant">Attendant</option>
+                <option value="admin">Admin</option>
+             </select>
+        </td>    
+        </tr>
         <tr  >
             <!-- <td><input type="submit" placeholder="Register" name ="register" style="padding:8px;"></td> -->
             <td><button type="submit" name="register" style="padding:8px;"> Register</button></td>
-            <td><a href="config.php">Click here to login</a></td>
+            <!-- <td><a href="config.php">Click here to login</a></td> -->
         </tr>
     </table>
     <p style="color:red;  font-size:20px;"><?php echo $msg ?></p>
