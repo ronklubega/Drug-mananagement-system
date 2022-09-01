@@ -1,5 +1,6 @@
 <?php
 include('database.php');
+include('head.php');
 include('variables.php');
 if(isset($_GET['message'])){
 $msg=$_GET['message'];
