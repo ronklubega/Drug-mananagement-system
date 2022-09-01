@@ -30,6 +30,20 @@ color: beige;
 padding-left: 500px;
 padding-top:80px;
 }
-.index{
-    display:inline-flex;
+.producttable h2{
+    text-align: center;
 }
+.producttable table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.producttable td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+.producttable tr:nth-child(even) {
+    background-color: #dddddd;
+    color: black;
+  }

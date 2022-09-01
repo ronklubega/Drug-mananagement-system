@@ -1,5 +1,9 @@
 <?php
-include('head.php');
+include('defaultnav.php');
+$msg ="";
+if(isset($_GET['message'])){
+$msg = $_GET['message'];
+}
 ?>
 
 <div class="register">
@@ -20,5 +24,6 @@ include('head.php');
             <td style="padding-left:5px;"><a href="dashlane.php">Click here to Register</a></td>
         </tr>
     </table>
+    <p style="color:red;  font-size:20px;"><?php echo $msg ?></p>
 </form>
 </div>
