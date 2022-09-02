@@ -48,7 +48,7 @@
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur voluptatibus, ipsam labore molestiae modi sit possimus dolorum porro nobis quidem quos consectetur. Enim, quam velit. Nemo similique accusamus corrupti et nisi perspiciatis.</p>
 </div>
 <div>
-  <span style="text-align:center; "><a href="welcomepage.php" style="font-size:24px; text-decoration:none; color:rgb(21, 10, 66)">Back  | Home</a></span>
+  <p style=" text-align:center; "><a href="welcomepage.php" style="font-size:24px; text-decoration:none; color:rgb(21, 10, 66) text-align:center; ">Back  | Home</a></p>
 </div>
 <!-- java script page -->
 <script>
