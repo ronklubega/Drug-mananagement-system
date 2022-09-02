@@ -45,12 +45,13 @@ if(isset($_POST['Register'])){
     $productname = mysqli_real_escape_string($conn, $_POST['productname']);
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
+    $regdate =mysqli_real_escape_string($conn, $_POST['regdate']);
     $sql1=mysqli_query($conn, "select * from products where productname='$productname'");
     $row=mysqli_num_rows($sql1);
     if($row>0){
         header("location:index.php?failed=Product  name '$productname' already exits.");
     }else{
-        $sql = mysqli_query($conn, "insert into products (productname, price, quantity) values('$productname','$price','$quantity');");
+        $sql = mysqli_query($conn, "insert into products (productname, price, quantity, regdate) values('$productname','$price','$quantity','$regdate');");
         header("location: productlist.php?success=Product added successfully.");
     }
 }
@@ -60,7 +61,8 @@ if(isset($_POST['update'])){
     $productname = mysqli_real_escape_string($conn, $_POST['productname']);
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
-    mysqli_query($conn, "update products set productname='$productname', price='$price', quantity='$quantity' where id='$id'");
+    $regdate =mysqli_real_escape_string($conn, $_POST['regdate']);
+    mysqli_query($conn, "update products set productname='$productname', price='$price', quantity='$quantity', regdate='$regdate' where id='$id'");
     header("location:productlist.php");
 }
 

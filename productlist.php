@@ -31,6 +31,7 @@ if(isset($_GET['success'])){
                             <th >Product name</th>
                             <th >price</th>
                             <th >quantity</th>
+                            <th>Registration date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,12 +42,40 @@ if(isset($_GET['success'])){
                             <td><?php echo $product['productname']?></td>
                             <td><?php echo $product['price']?></td>
                             <td><?php echo $product['quantity']?></td>
+                            <td><?php echo $product['regdate']?></td>
                             <td>
                             <a href="index.php?edit=<?php echo $product['id']; ?> && message=Update">Update</a>
                             <a href="process.php?delete=<?php echo $product['id'];?>">Delete</a>
                             </td>
                         </tr>
                         <?php endwhile; ?>
+                    </tbody>
+                </table>
+                <!-- the sales talble -->
+<h2>Products sold</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Sold By</th>
+                            <th >Sales(SHS)</th>
+                            <th >Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sales =mysqli_query($conn, "select * from sales");
+                        
+                        while($mysales =$sales->fetch_assoc()):
+                        if($mysales['saleamount']>0){
+                        ?>
+                        <tr>
+                            <td><?php echo $mysales['productname']?></td>
+                            <td><?php echo $mysales['user']?></td>
+                            <td><?php echo $mysales['saleamount']?></td>
+                            <td><?php echo $mysales['sellsdate']?></td>
+                        </tr>
+                        <?php } endwhile; ?>
                     </tbody>
                 </table>
 </div>  

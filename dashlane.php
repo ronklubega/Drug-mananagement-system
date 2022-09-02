@@ -1,4 +1,10 @@
 <?php
+include("database.php");
+if(!$_SESSION['USER_ID']){
+    header("location:config.php");
+    die();
+
+}
 include('head.php');
 $msg='';
 if(isset($_GET['message'])){

@@ -20,6 +20,7 @@ if(isset($_GET['edit'])){
     $ptdname = $ptd['productname'];
     $ptdprice =$ptd['price'];
     $ptdquantity =$ptd['quantity'];
+    $ptdregistration=$ptd['regdate'];
 }
 if(isset($_GET['failed'])){
 $failed =$_GET['failed'];
@@ -41,25 +42,31 @@ $failed =$_GET['failed'];
     <div style="padding-top:20px; padding-left:500px;">
     <h3><?php echo $msg?> product details</h3>
     <form action="register.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $prdt?>">
+    <input type="hidden" name="id" value="<?php echo $prdt?>"/>
         <table>
             <tr>
                 <td>Product Name:</td>
             </tr>
             <tr>
-                <td><input type="text" name="productname" placeholder="enter product name" style="padding:5px;" required value="<?php echo $ptdname;?>"></td>
+                <td><input type="text" name="productname"  placeholder="enter product name" style="padding:5px;" required value="<?php echo $ptdname;?>"></td>
             </tr>
             <tr>
                 <td>Price:</td>
             </tr>
             <tr>
-                <td><input type="number" name="price" placeholder="product price" size="40" style="padding:5px;" required value="<?php echo $ptdprice;?>"></td>
+                <td><input type="number" name="price"   placeholder="product price"  style="padding:5px;" required value="<?php echo $ptdprice;?>"></td>
             </tr>
             <tr>
                 <td>Quantity</td>
             </tr>
             <tr>
-                <td><input type="number" name="quantity" placeholder="Product quantitiy" size="50" style="padding:5px;" required value="<?php echo $ptdquantity;?>"></td>
+                <td><input type="number" name="quantity" placeholder="Product quantitiy"  style="padding:5px;" required value="<?php echo $ptdquantity;?>"></td>
+            </tr>
+            <tr>
+                <td>Date of registration</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="regdate" placeholder="date of registration"  style="padding:5px;" required value="<?php echo $ptdregistration;?>"></td>
             </tr>
             <tr>
                 <?php 

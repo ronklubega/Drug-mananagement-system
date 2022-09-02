@@ -56,7 +56,9 @@ if(isset($_GET['success'])){
                     <thead>
                         <tr>
                             <th>Product Name</th>
+                            <th>Sold By</th>
                             <th >Sales(SHS)</th>
+                            <th >Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,7 +70,9 @@ if(isset($_GET['success'])){
                         ?>
                         <tr>
                             <td><?php echo $mysales['productname']?></td>
+                            <td><?php echo $mysales['user']?></td>
                             <td><?php echo $mysales['saleamount']?></td>
+                            <td><?php echo $mysales['sellsdate']?></td>
                         </tr>
                         <?php } endwhile; ?>
                     </tbody>

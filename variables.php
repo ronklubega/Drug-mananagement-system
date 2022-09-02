@@ -10,4 +10,10 @@ $sale_prdt_name='';
 $sale_prdt_price='';
 $sale_prdt_quantity='';
 $sale_prdt_total='';
+$sale_prdt_user='';
+$sale_prdt_date='';
+$ptdregistration='';
+$sql='';
+$srch='';
+$info='';
 ?>
