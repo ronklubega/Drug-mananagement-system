@@ -16,7 +16,7 @@ $msg=$_GET['message'];
 }
 if(isset($_POST['searchprdt'])){
     $date= $_POST['date'];
-    $sql = mysqli_query($conn, "select productname,price, quantity from products where regdate='$date'");
+    $sql = mysqli_query($conn, "select  productname,price, quantity ,expdate from products where expdate='$date'");
 }
 
 ?>
@@ -73,10 +73,13 @@ if(isset($_POST['searchprdt'])){
                             <th>Product Name</th>
                             <th>Price</th>
                             <th >quantity</th>
+                            <th >expirely date</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        if ($sql):
+                            
                         
                         while($srch =$sql->fetch_assoc()):
                         ?>
@@ -84,8 +87,10 @@ if(isset($_POST['searchprdt'])){
                             <td><?php echo $srch['productname']?></td>
                             <td><?php echo $srch['price']?></td>
                             <td><?php echo $srch['quantity']?></td>
+                            <td><?php echo $srch['expdate']?></td>
                         </tr>
-                        <?php  endwhile; ?>
+                        <?php  endwhile; 
+                        endif;?>
                     </tbody>
                 </table>
                         </div>

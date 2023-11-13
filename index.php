@@ -2,6 +2,7 @@
 include('database.php');
 include('head.php');
 include('variables.php');
+include('back.php');
 if(isset($_GET['message'])){
 $msg=$_GET['message'];
 }
@@ -21,6 +22,7 @@ if(isset($_GET['edit'])){
     $ptdprice =$ptd['price'];
     $ptdquantity =$ptd['quantity'];
     $ptdregistration=$ptd['regdate'];
+    $ptdexpirly=$ptd['expdate'];
 }
 if(isset($_GET['failed'])){
 $failed =$_GET['failed'];
@@ -36,38 +38,45 @@ $failed =$_GET['failed'];
 </head>
 <body>
     <div>
-        <h3>Admin User: <span style="color:red;"><?php echo $_SESSION['USER_NAME']; ?></span></h3>
+        <h3>ADMIN USER: <span style="color:red;"><?php echo $_SESSION['USER_NAME']; ?></span></h3>
         <script> alert("<?php echo $msgsc?>");</script>
     </div>
     <div style="padding-top:20px; padding-left:500px;">
     <h3><?php echo $msg?> product details</h3>
     <form action="register.php" method="POST">
     <input type="hidden" name="id" value="<?php echo $prdt?>"/>
-        <table>
+        <table >
             <tr>
-                <td>Product Name:</td>
+                <td >Product Name:</td>
             </tr>
             <tr>
                 <td><input type="text" name="productname"  placeholder="enter product name" style="padding:5px;" required value="<?php echo $ptdname;?>"></td>
             </tr>
             <tr>
-                <td>Price:</td>
+                <td >Price:</td>
             </tr>
             <tr>
                 <td><input type="number" name="price"   placeholder="product price"  style="padding:5px;" required value="<?php echo $ptdprice;?>"></td>
             </tr>
             <tr>
-                <td>Quantity</td>
+                <td >Quantity</td>
             </tr>
             <tr>
                 <td><input type="number" name="quantity" placeholder="Product quantitiy"  style="padding:5px;" required value="<?php echo $ptdquantity;?>"></td>
             </tr>
             <tr>
-                <td>Date of registration</td>
+                <td >Date of registration</td>
             </tr>
             <tr>
-                <td><input type="date" name="regdate" placeholder="date of registration"  style="padding:5px;" required value="<?php echo $ptdregistration;?>"></td>
+                <td><input type="date" name="regdate" placeholder="date of registration"  style="padding:5px;" required value="<?php echo $ptdregistration;?>"> </td>
             </tr>
+            <tr>
+                <td>ExpirelyDate</td>
+            </tr>
+            <tr>
+                <td><input type="date" name="expdate" placeholder="date of expirely"  style="padding:5px;" required value="<?php echo $ptdexpirly;?>"> </td>
+            </tr>
+           
             <tr>
                 <?php 
                 if($msg == "Register"):

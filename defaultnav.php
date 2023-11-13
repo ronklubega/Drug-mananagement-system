@@ -7,7 +7,8 @@
     <body>
         <div class="mynav">
         <div class="header">
-        <p>DashLane</p>
+        <img src="assets/system_logo.png">
+        <p><big>DASH LANE</big></p>
         </div>
         <div class="form1">
 <ul>
